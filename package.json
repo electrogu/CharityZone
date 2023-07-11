@@ -1,0 +1,21 @@
+{
+  "name": "charityzone",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "test"
+  },
+  "author": "electrogu",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^0.24.0",
+    "discord.js": "^13.2.0",
+    "dotenv": "^16.3.1",
+    "fs": "^0.0.1-security",
+    "graphql": "^16.7.1",
+    "graphql-request": "^6.1.0",
+    "path": "^0.12.7",
+    "quick.db": "^7.1.3"
+  }
+}
