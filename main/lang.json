@@ -1,0 +1,157 @@
+{
+  "languages": ["en", "tr"],
+  "translations": {
+    "TAG_ERROR": {
+      "en": "Please tag a user.",
+      "tr": "Lütfen bir kullanıcıyı etiketleyiniz."
+    },
+    "UNVALID_NUMBER": {
+      "en": "Please provide a valid number",
+      "tr": "Lütfen geçerli bir sayı belirtiniz"
+    },
+    "YOUR_BALANCE": {
+      "en": "Your balance:",
+      "tr": "Hesabındaki para:"
+    },
+    "COIN_ADDED": {
+      "en": "has been given to",
+      "tr": "şu kullanıcının hesabına eklendi:"
+    },
+    "NEW_BALANCE": {
+      "en": "User's new balance:",
+      "tr": "Kullanıcının şuan ki hesabı:"
+    },
+    "SYNTAX_ERROR": {
+      "en": "Incorrect syntax! Use",
+      "tr": "Yanlış sözdizimi! Şunu kullanın"
+    },
+    "PERM_ERROR": {
+      "en": "You do not have permission to run this command.",
+      "tr": "Bu komudu kullanmak için izniniz yok."
+    },
+    "LANG_ERROR": {
+      "en": "That language is not supported yet.",
+      "tr": "Bu dil desteklenmemektedir."
+    },
+    "LANG_SET": {
+      "en": "Language set",
+      "tr": "Dil ayarlandı"
+    },
+    "BAD_WORDS": {
+      "en": "Bad words are forbidden here! <a:yasak:713219172594614282>",
+      "tr": "Bu sunucuda küfür yasaktır! <a:yasak:713219172594614282>"
+    },
+    "WARNING": {
+      "en": "⚠️ Warning",
+      "tr": "⚠️ Uyarı"
+    },
+    "NO_EMOJİ": {
+      "en": "There isn't any uploaded emoji.",
+      "tr": "Sunucuya eklenmiş emoji bulunmamaktadır."
+    },
+    "NO_UPDATE": {
+      "en": "There isn't any updates yet.",
+      "tr": "Henüz herhangi bir güncelleme bulunmamaktadır."
+    },
+    "TAG_VOICE_CHANNEL_OR_CONNECT": {
+      "en": "Please tag a voice channel or connect to a voice channel!",
+      "tr": "Lütfen bir ses kanalını etiketleyiniz ya da bir ses kanalına giriniz!"
+    },
+    "TAG_USER_OR_VALID_ID": {
+      "en": "Please tag a user or enter ID of the user!",
+      "tr": "Lütfen bir kullanıcıyı etiketleyiniz ya da kullanıcının ID'sini giriniz!"
+    },
+    "TAG_ROLE_OR_VALID_ID": {
+      "en": "Please tag a role or enter ID of the role!",
+      "tr": "Lütfen bir rolü etiketleyiniz ya da rolün ID'sini giriniz!"
+    },
+    "TAG_ROLE_USER_OR_VALID_ID": {
+      "en": "Please tag a role/user or enter ID of the role/user!",
+      "tr": "Lütfen bir rolü/kullanıcıyı etiketleyiniz ya da bir rolün/kullanıcının ID'sini giriniz!"
+    },
+    "INVALID_USER": {
+      "en": "Unknown User",
+      "tr": "Bilinmeyen Kullanıcı!"
+    },
+    "INVALID_ROLE": {
+      "en": "Unknown Role",
+      "tr": "Bilinmeyen Rol!"
+    },
+    "INVALID_USER_ROLE": {
+      "en": "Unknown User/Role",
+      "tr": "Bilinmeyen Kullanıcı/Rol!"
+    },
+    "TAG_CHANNEL": {
+      "en": "Please tag a text channel or enter ID of a text channel!",
+      "tr": "Lütfen bir metin kanalını etiketleyiniz ya da bir metin kanalının ID'sini giriniz!"
+    },
+    "TAG_VALID_CHANNEL": {
+      "en": "Please enter a valid text channel ID!",
+      "tr": "Lütfen geçerli bir metin kanalını ID'si giriniz!"
+    },
+    "STILL_PLAYING": {
+      "en": "The game already started!",
+      "tr": "Zaten oyundasınız!"
+    },
+    "QUESTION": {
+      "en": "Question",
+      "tr": "Soru"
+    },
+    "IS_THIS_YOUR_CHARACTER": {
+      "en": "Is this your character?",
+      "tr": "Karakteriniz bu muydu?"
+    },
+    "YES_NO": {
+      "en": "yes (**y**) / no (**n**)",
+      "tr": "evet (**e**) / hayır (**h**)"
+    },
+    "GUESSED_RIGHT": {
+      "en": "Great! Guessed right one more time.",
+      "tr": "Güzel! Bir defa daha doğru bildim."
+    },
+    "IT_WAS_NICE_TO_PLAY_WITH_YOU": {
+      "en": "It was nice to play with you.",
+      "tr": "Seninle oynamak güzeldi."
+    },
+    "YOU_ARE_WIN": {
+      "en": "Uh! You are win.",
+      "tr": "Ah! Kazanan sensin."
+    },
+    "UPDATES": {
+      "en": "Updates",
+      "tr": "Güncellemeler"
+    },
+    "CANCELED": {
+      "en": "Game Canceled",
+      "tr": "Oyun İptal Edildi"
+    },
+    "VOTING": {
+      "en": "Voting",
+      "tr": "Oylama"
+    },
+    "CHPROTECT_ACTIVATED": {
+      "en": "Channel Protection is activated!",
+      "tr": "Kanal Koruma aktif edildi!"
+    },
+    "CHPROTECT_DEACTIVATED": {
+      "en": "Channel Protection is deactivated!",
+      "tr": "Kanal Koruma devre dışı bırakıldı!"
+    },
+    "ROLEPROTECT_ACTIVATED": {
+      "en": "Role Protection is activated!",
+      "tr": "Rol Koruma aktif edildi!"
+    },
+    "ROLEPROTECT_DEACTIVATED": {
+      "en": "Role Protection is deactivated!",
+      "tr": "Rol Koruma devre dışı bırakıldı!"
+    },
+    "ANTIBOT_ACTIVATED": {
+      "en": "Anti-Bot is activated!",
+      "tr": "Bot Koruması aktif edildi!"
+    },
+    "ANTIBOT_DEACTIVATED": {
+      "en": "Anti-Bot is deactivated!",
+      "tr": "Bot Koruması devre dışı bırakıldı!"
+    }
+  }
+}
