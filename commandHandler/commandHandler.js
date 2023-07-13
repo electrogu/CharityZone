@@ -42,21 +42,19 @@ const validatePermissions = (perms) => {
   ]
 
   for (const permission of perms) {
-    if(!permission === 'OWNEROFTHEBOT'){
+    if (!permission === "OWNEROFTHEBOT") {
       if (!validPermissions.includes(permission)) {
         throw new Error(`Unknown permission node "${permission}"`)
       }
     }
   }
-}
-
-let recentlyRan = []
+};
 
 module.exports = (client, cmdOptions) => {
   let {
     commands = [],
-    reqArgs = '',
-    permError = '',
+    reqArgs = "",
+    permError = "",
     minArgs = 0,
     maxArgs = null,
     perms = [],
@@ -85,133 +83,159 @@ module.exports = (client, cmdOptions) => {
     const { member, content, guild, author } = message
 
     for (const alias of commands) {
-      try{
-      const command1 = `${prefix}${alias.toLowerCase()}`
-      const command2 = `${prefix} ${alias.toLowerCase()}`
+      try {
+        const command1 = `${prefix}${alias.toLowerCase()}`;
+        const command2 = `${prefix} ${alias.toLowerCase()}`;
 
-      if (
-        content.toLowerCase().startsWith(`${command1} `) ||
-        content.toLowerCase() === command1 ||
-        content.toLowerCase().startsWith(`${command2} `) ||
-        content.toLowerCase() === command2
-      ) {
-        // A command has been ran
+        if (
+          content.toLowerCase().startsWith(`${command1} `) ||
+          content.toLowerCase() === command1 ||
+          content.toLowerCase().startsWith(`${command2} `) ||
+          content.toLowerCase() === command2
+        ) {
+          // A command has been ran
 
-        //Log the command
-        const channelID = db.get(`commandlogchannel`)
-        if(channelID){
-          const logChannel = client.channels.cache.get(channelID)
-          const e = new MessageEmbed()
-          .setDescription(`Command Used`)
-          .addFields(
-            {
-              name: `Guild`,
-              value: guild.name || '-',
-              inline: true
-            },
-            {
-              name: `Guild ID`,
-              value: guild.id || '-',
-              inline: true
-            },
-            {
-              name: `Guild Member Count`,
-              value: guild.memberCount.toString() || '-',
-              inline: true
-            },
-            {
-              name: `Author`,
-              value: author.tag || '-',
-              inline: true
-            },
-            {
-              name: `Command`,
-              value: message.content || '-',
-              inline: true
-            }
-          )
-          .setColor('GREEN')
-          logChannel.send({embeds: [e]}).catch(err => console.log(err))
-        }
-        //Check if the bot is in maintenance
-        const mainInfo = db.get(`maintenanceInfo`)
-        if(mainInfo != null && author.id != ownerID){
-          const parsed = parse(Date.now() - mainInfo.date)
-          message.reply({embeds: [new MessageEmbed().setTitle(`⚠️ Warning!`).setDescription(`Cannot process the command due to maintenance. Try again later, please.
+          //Log the command
+          const channelID = db.get(`commandlogchannel`);
+          if (channelID) {
+            const logChannel = client.channels.cache.get(channelID);
+            const e = new MessageEmbed()
+              .setDescription(`Command Used`)
+              .addFields(
+                {
+                  name: `Guild`,
+                  value: guild.name || "-",
+                  inline: true,
+                },
+                {
+                  name: `Guild ID`,
+                  value: guild.id || "-",
+                  inline: true,
+                },
+                {
+                  name: `Guild Member Count`,
+                  value: guild.memberCount.toString() || "-",
+                  inline: true,
+                },
+                {
+                  name: `Author`,
+                  value: author.tag || "-",
+                  inline: true,
+                },
+                {
+                  name: `Command`,
+                  value: message.content || "-",
+                  inline: true,
+                }
+              )
+              .setColor("GREEN");
+            logChannel.send({ embeds: [e] }).catch((err) => console.log(err));
+          }
+          //Check if the bot is in maintenance
+          const mainInfo = db.get(`maintenanceInfo`);
+          if (mainInfo != null && author.id != ownerID) {
+            const parsed = parse(Date.now() - mainInfo.date);
+            message.reply({
+              embeds: [
+                new MessageEmbed().setTitle(`⚠️ Warning!`)
+                  .setDescription(`Cannot process the command due to maintenance. Try again later, please.
           
           **Date:** <t:${Math.floor(mainInfo.unixtimestamp)}>
-          **Time elapsed:** \`\`${parsed.hours}:${parsed.minutes}:${parsed.seconds}\`\``)]})
-          return
-        }
-
-        // Ensure the user has the required perms
-        for (const permission of perms) {
-          if(!permission === 'OWNEROFTHEBOT'){
-          if (!member.hasPermission(permission)) {
-            message.reply(`${language(guild, 'PERM_ERROR')}`,)
-            return
+          **Time elapsed:** \`\`${parsed.hours}:${parsed.minutes}:${
+                  parsed.seconds
+                }\`\``),
+              ],
+            });
+            return;
           }
-          }else{
-            if (!author.id === ownerID) {
-              return
+
+          // Ensure the user has the required perms
+          for (const permission of perms) {
+            if (!permission === "OWNEROFTHEBOT") {
+              if (!member.hasPermission(permission)) {
+                message.reply(`${language(guild, "PERM_ERROR")}`);
+                return;
+              }
+            } else {
+              if (!author.id === ownerID) {
+                return;
+              }
             }
           }
-        }
 
-        // Ensure the bot has the required perms
-        if(!message.guild.me.permissions.has("MANAGE_MESSAGES")){
-          if(!message.guild.me.permissions.has("USE_APPLICATION_COMMANDS")){
-            return message.reply({embeds: [new MessageEmbed()
-              .setTitle(`<:cross:964277728075481088> **Error**`)
-              .setDescription("I don't have `USE_APPLICATION_COMMANDS` permission for commands to work, please check the permissions on the role that I have!")]})
+          // Ensure the bot has the required perms
+          if (!message.guild.me.permissions.has("MANAGE_MESSAGES")) {
+            if (!message.guild.me.permissions.has("USE_APPLICATION_COMMANDS")) {
+              return message.reply({
+                embeds: [
+                  new MessageEmbed()
+                    .setTitle(`<:cross:964277728075481088> **Error**`)
+                    .setDescription(
+                      "I don't have `USE_APPLICATION_COMMANDS` permission for commands to work, please check the permissions on the role that I have!"
+                    ),
+                ],
+              });
               //.then(msg=> setTimeout(() => msg.delete(), 5000))
-          }else{
-            message.reply({embeds: [new MessageEmbed()
-              .setTitle(`⚠️ **Warning**`)
-              .setDescription("I don't have `MANAGE_MESSAGES` permission for commands to work properly, please check the permissions on the role that I have!")]})
-              .then(msg=> setTimeout(() => msg.delete(), 5000))
+            } else {
+              message
+                .reply({
+                  embeds: [
+                    new MessageEmbed()
+                      .setTitle(`⚠️ **Warning**`)
+                      .setDescription(
+                        "I don't have `MANAGE_MESSAGES` permission for commands to work properly, please check the permissions on the role that I have!"
+                      ),
+                  ],
+                })
+                .then((msg) => setTimeout(() => msg.delete(), 5000));
+            }
           }
-        }
 
-        if(enabled == false){
-          message.channel.send(`**TR** : **${command}** komudu geçici olarak kullanım dışıdır.\n**EN** : **${command}** command is temporarily out of use.`).then(msg=> setTimeout(() => msg.delete(), 5000))
-          return
-        }
-        // Split on any number of spaces
-        const arguments = content.split(/[ ]+/)
+          if (enabled == false) {
+            message.channel
+              .send(
+                `**TR** : **${command}** komudu geçici olarak kullanım dışıdır.\n**EN** : **${command}** command is temporarily out of use.`
+              )
+              .then((msg) => setTimeout(() => msg.delete(), 5000));
+            return;
+          }
+          // Split on any number of spaces
+          const arguments = content.split(/[ ]+/);
 
-        // Remove the command which is the first index
-        arguments.shift()
+          // Remove the command which is the first index
+          arguments.shift();
 
-        // Ensure we have the correct number of arguments
-        if (
-          arguments.length < minArgs ||
-          (maxArgs !== null && arguments.length > maxArgs)
-        ) {
-          let text = language(guild, 'SYNTAX_ERROR')
-          text.then(function(r){
-            message.reply(
-              `${r} **${prefix}${alias} ${reqArgs}**`
-            )
-          })
-          return
+          // Ensure we have the correct number of arguments
+          if (
+            arguments.length < minArgs ||
+            (maxArgs !== null && arguments.length > maxArgs)
+          ) {
+            let text = language(guild, "SYNTAX_ERROR");
+            text.then(function (r) {
+              message.reply(`${r} **${prefix}${alias} ${reqArgs}**`);
+            });
+            return;
+          }
+          if (content.toLowerCase().startsWith(command2)) {
+            arguments.shift();
+          }
+          // Handle the custom command code
+          run(
+            message,
+            arguments,
+            arguments.join(" "),
+            client,
+            command1,
+            command2
+          );
+          return;
         }
-        if (
-          content.toLowerCase().startsWith(command2)
-        )
-        {
-          arguments.shift()
-        }
-        // Handle the custom command code
-        run(message, arguments, arguments.join(' '), client, command1, command2)
-        return
-      }
-      }catch(err){
-        console.log(err)
+      } catch (err) {
+        console.log(err);
       }
     }
-  })
-}
+  });
+};
 
 /*
 
