@@ -168,7 +168,7 @@ module.exports = {
               });
               const query = gql`
                           query PublicSearchFaceted {
-                            publicSearchFaceted (term: "${term}", result_size: ${parseInt(
+                            publicSearchFaceted (term: "${term ?? ""}", result_size: ${parseInt(
                 resultSize
               )}) {
                               size
