@@ -34,8 +34,9 @@ module.exports = {
       let embedd = new MessageEmbed().setColor("GREEN");
       const { channel } = element;
       const { timeout } = client;
-
-      let timeoutamount = 0.0001e7;
+      
+      let seconds = 30
+      let timeoutamount = seconds*1000;
       let daily = timeout.get(`${element.author.id}+search`);
       if (daily !== undefined && timeoutamount - (Date.now() - daily) > 0) {
         let time = parse(timeoutamount - (Date.now() - daily));
