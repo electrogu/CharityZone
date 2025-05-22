@@ -1,12 +1,12 @@
 const { gql, GraphQLClient } = require('graphql-request');
+require('dotenv').config();
 
 module.exports = {
   commands: [],
   perms: "OWNEROFTHEBOT",
   run: async (message, args, text, client) => {
     const apiUrl = "https://data.charitynavigator.org";
-    const apiKey =
-      "REMOVED";
+    const apiKey = process.env.CHARITY_API_KEY;
 
       const QLClient = new GraphQLClient(apiUrl, {
         headers: {
